@@ -12,7 +12,7 @@ Add-type -AssemblyName office
 $Application = New-Object -ComObject powerpoint.application
 $application.visible = [Microsoft.Office.Core.MsoTriState]::msoTrue
 $slideType = "microsoft.office.interop.powerpoint.ppSlideLayout" -as [type]
-$templatePresentation = "template.pptx"
+$templatePresentation = Join-Path $PSScriptRoot 'template.pptx'
 
 $presentation = $application.Presentations.open($templatePresentation)
 [string[]]$arrayFromFile = Get-Content $FilePath -Encoding "UTF8" 
@@ -25,7 +25,8 @@ $output | ForEach-Object { `
     $slide.Shapes.title.TextFrame.TextRange.Font.Bold = $true
 }
 
-$presentation.SavecopyAs($OutputFile)
+$outPath = Join-Path $PSScriptRoot $OutputFile
+$presentation.SavecopyAs($outPath)
 $presentation.Close()
 $application.quit()
 $application = $null
