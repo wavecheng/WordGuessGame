@@ -5,5 +5,3 @@ It use the [THUOCL：清华大学开放中文词库](http://thuocl.thunlp.org/) 
 Sample command:
 
 ```.\generate.ps1 -FilePath .\data\THUOCL_chengyu.txt -Size 50 -OutputFile test.pptx ```
-
-`template.pptx` needs to be put in current direcotry as PS execution will not recognize current file location. It will throw "FileNotFound" exception. We need to provide the full file path for the template
